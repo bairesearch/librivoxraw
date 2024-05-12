@@ -40,7 +40,7 @@ def convertNLPdataFilesTokeniseProsody(input_folder_path, output_folder_path, fi
 
 		# Write accumulated lines to new file
 		output_file_name = os.path.splitext(os.path.basename(txt_file))[0]
-		output_file_path = f"{output_file_name}{output_file_suffix}"
+		output_file_path = f"{output_folder_path}{output_file_name}{output_file_suffix}"
 		with open(output_file_path, 'w') as output_file:
 			output_file.writelines(text)
 
@@ -58,9 +58,10 @@ def replaceProsodySpaceWithTokens(text, prosodyDelimitedUniqueTokens):
 	return text
 	
 if __name__ == "__main__":
-	input_folder_path = "."
-	output_folder_path = "."
-	convertNLPdataFilesTokeniseProsody(input_folder_path, output_folder_path, ".txtw", ".txtpt", False)
-	convertNLPdataFilesTokeniseProsody(input_folder_path, output_folder_path, ".txtw", ".txtptu", True)
+	input_folder_path = "NLPdataFiles/"
+	output_folder_path = "NLPdataFilesProsodyTokens/"
+	convertNLPdataFilesTokeniseProsody(input_folder_path, output_folder_path, ".txt", ".txtptc", False)	#prosodyDelimitedType="controlTokens"	#replace single space characters with tokens
+	convertNLPdataFilesTokeniseProsody(input_folder_path, output_folder_path, ".txtw", ".txtptr", False)	#prosodyDelimitedType="repeatTokens"	#replace repeated space characters with tokens
+	convertNLPdataFilesTokeniseProsody(input_folder_path, output_folder_path, ".txtw", ".txtptu", True)	#prosodyDelimitedType="uniqueTokens"	#replace repeated space characters with unique token
 
 
